@@ -89,6 +89,22 @@ base:MaterialPassportShape
 	sh:path ontomatpassport:MaterialCircularityIndicator ;
     sh:datatype xsd:decimal ;
     sh:minCount 0 ;
+  ] ; 
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:construct """
+      PREFIX ontomatpassport: <https://www.theworldavatar.com/kg/ontomatpassport/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+      CONSTRUCT {
+        ?this ontomatpassport:MaterialCircularityIndicator ?mci .
+      }
+      WHERE {
+        ?this ontomatpassport:RecyclingEfficiencyForPortionCollectedForRecycling ?ec .
+        ?this ontomatpassport:RecyclingEfficiencyForProducingFeedstock ?ef .
+        BIND((?ec + ?ef) AS ?mci)
+      }
+    """ ;
   ] .
   
 base:MassShape
