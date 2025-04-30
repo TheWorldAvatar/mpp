@@ -59,5 +59,9 @@
     "https://www.theworldavatar.com/kg/ontomatpassport/MaterialCircularityIndicator": {
       "@replace": "MCI",
       "@type": "literal"
+    },
+    "sh:rule": {
+      "@type": "sh:SPARQLRule",
+      "sh:construct": "PREFIX ontomatpassport: <https://www.theworldavatar.com/kg/ontomatpassport/>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nCONSTRUCT {\n  ?this ontomatpassport:MaterialCircularityIndicator ?mci .\n}\nWHERE {\n  ?this ontomatpassport:RecyclingEfficiencyForPortionCollectedForRecycling ?ec .\n  ?this ontomatpassport:RecyclingEfficiencyForProducingFeedstock ?ef .\n  BIND((?ec + ?ef) AS ?mci)\n}"
     }
   }
