@@ -100,9 +100,12 @@ base:MaterialPassportShape
         ?this ontomatpassport:MaterialCircularityIndicator ?mci .
       }
       WHERE {
-        ?this ontomatpassport:RecyclingEfficiencyForPortionCollectedForRecycling ?ec .
-        ?this ontomatpassport:RecyclingEfficiencyForProducingFeedstock ?ef .
-        BIND((?ec + ?ef) AS ?mci)
+        ?this ontomatpassport:RecyclingEfficiencyForPortionCollectedForRecycling ?ecRaw .
+        ?this ontomatpassport:RecyclingEfficiencyForProducingFeedstock ?efRaw .
+        
+        BIND(xsd:decimal(?ecRaw) AS ?ec)
+        BIND(xsd:decimal(?efRaw) AS ?ef)
+        BIND(?ec + ?ef AS ?mci)
       }
     """ ;
   ] .
